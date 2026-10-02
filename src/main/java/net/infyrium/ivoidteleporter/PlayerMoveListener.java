@@ -1,5 +1,8 @@
 package net.infyrium.ivoidteleporter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -11,11 +14,13 @@ import org.bukkit.event.player.PlayerMoveEvent;
 public class PlayerMoveListener implements Listener {
 
     private final double triggerHeight;
+    private final Set<String> worlds;
     private final Location teleportLocation;
 
     public PlayerMoveListener(iVoidTeleporterMain plugin) {
         var config = plugin.getConfig();
         this.triggerHeight = config.getDouble("settings.triggerHeight");
+        this.worlds = new HashSet<>(config.getStringList("settings.worlds"));
 
         String worldName = config.getString("settings.teleportLocation.world");
         if (worldName == null || worldName.isEmpty()) {
@@ -46,6 +51,8 @@ public class PlayerMoveListener implements Listener {
         if (event.getFrom().getY() == event.getTo().getY()) return;
 
         Player player = event.getPlayer();
+        if (!worlds.isEmpty() && !worlds.contains(player.getWorld().getName())) return;
+
         if (player.getLocation().getY() < triggerHeight) {
             player.teleport(teleportLocation);
         }

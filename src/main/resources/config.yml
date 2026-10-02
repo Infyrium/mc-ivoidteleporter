@@ -1,5 +1,6 @@
 settings:
   triggerHeight: 50
+  worlds: [] # Worlds where the plugin works, empty - all worlds
   teleportLocation:
     x: 0
     y: 0

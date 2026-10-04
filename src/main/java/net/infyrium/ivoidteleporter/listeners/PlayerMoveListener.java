@@ -1,4 +1,4 @@
-package net.infyrium.ivoidteleporter;
+package net.infyrium.ivoidteleporter.listeners;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+
+import net.infyrium.ivoidteleporter.iVoidTeleporterMain;
 
 public class PlayerMoveListener implements Listener {
 
